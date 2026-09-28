@@ -17,6 +17,15 @@ $app = new Illuminate\Foundation\Application(
 
 /*
 |--------------------------------------------------------------------------
+| Bind Storage Path For Serverless (Vercel)
+|--------------------------------------------------------------------------
+*/
+if (isset($_ENV['VERCEL']) || isset($_SERVER['VERCEL']) || getenv('VERCEL')) {
+    $app->useStoragePath(getenv('APP_STORAGE') ?: '/tmp/storage');
+}
+
+/*
+|--------------------------------------------------------------------------
 | Bind Important Interfaces
 |--------------------------------------------------------------------------
 |
